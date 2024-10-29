@@ -3,7 +3,6 @@ name: Build/test package
 on:
     workflow_dispatch:
     push:
-        branches: [$default_branch]
 
 jobs:
     linux:
@@ -15,11 +14,12 @@ jobs:
         steps:
             - uses: actions/checkout@v4
             - name: Set up Python ${{ matrix.python-version }}
-              uses: actions/setup-python@v3
+              uses: actions/setup-python@v5
               with:
                   python-version: ${{ matrix.python-version }}
             - name: Install dependencies
               run: |
+                  pip install --upgrade pip
                   pip install -r requirements.txt
                   pip install -r requirements-dev.txt
             - name: Lint with black and flake8
