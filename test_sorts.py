@@ -19,40 +19,39 @@
 import pytest
 import numpy as np
 
-from sort_lib import bubble_sort
-from sort_lib import insertion_sort
-from sort_lib import quick_sort
+from bubble_sort import *
+from insertion_sort import *
+from quick_sort import *
 
 
-
-def is_sorted(self, int_list):
-    """
-    Testing oracle.
-    """
+def is_sorted(int_list):
+    for i in range(len(int_list) - 1):
+        if not int_list[i] <= int_list[i + 1]:
+            return False
     return True
+
 
 @pytest.fixture
 def int_lists():
     # fixture which creates testing data for all tests
-    return [[3,2,1],
-	        [1,1,1],
-			np.random.randint(low=-10, high=200, size=5)] 
-    
+    return [[3, 2, 1], [1, 1, 1]] + [
+        np.random.randint(low=-10, high=200, size=20) for i in range(1000)
+    ]
+
+
 def test_bubble(int_lists):
-    for list_key in range(int_lists):
-        s_list = bubble_sort(int_lists[list_key])
-        for i in range(len(s_list)-1):
-            assert s_list[i]<s_list[i+1]
+    for list_key in int_lists:
+        s_list = bubble_sort(list_key)
+        assert is_sorted(s_list)
 
 
 def test_quick(int_lists):
-     for list_key in range(int_lists):
-        s_list = quick_sort(int_lists[list_key])
-        for i in range(len(s_list)-1):
-            assert s_list[i]<s_list[i+1]
+    for list_key in int_lists:
+        s_list = quick_sort(list_key)
+        assert is_sorted(s_list)
+
 
 def test_insertion(int_lists):
-    for list_key in range(int_lists):
-        s_list = insertion_sort(int_lists[list_key])
-        for i in range(len(s_list)-1):
-            assert s_list[i]<s_list[i+1]
+    for list_key in int_lists:
+        s_list = insertion_sort(list_key)
+        assert is_sorted(s_list)
