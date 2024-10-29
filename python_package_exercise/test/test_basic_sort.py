@@ -19,6 +19,12 @@
 import pytest
 import numpy as np
 
+from sort_lib import bubble_sort
+from sort_lib import insertion_sort
+from sort_lib import quick_sort
+
+
+
 def is_sorted(self, int_list):
     """
     Testing oracle.
@@ -33,10 +39,20 @@ def int_lists():
 			np.random.randint(low=-10, high=200, size=5)] 
     
 def test_bubble(int_lists):
-    assert True
+    for list_key in range(int_lists):
+        s_list = bubble_sort(int_lists[list_key])
+        for i in range(len(s_list)-1):
+            assert s_list[i]<s_list[i+1]
+
 
 def test_quick(int_lists):
-    assert True
+     for list_key in range(int_lists):
+        s_list = quick_sort(int_lists[list_key])
+        for i in range(len(s_list)-1):
+            assert s_list[i]<s_list[i+1]
 
 def test_insertion(int_lists):
-    assert True
+    for list_key in range(int_lists):
+        s_list = insertion_sort(int_lists[list_key])
+        for i in range(len(s_list)-1):
+            assert s_list[i]<s_list[i+1]
