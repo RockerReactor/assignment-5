@@ -30,8 +30,8 @@ jobs:
                   pytest
             - name: Create package
               run: |
-                  py -m build
+                  python -m build
             - name: Archive built package
               uses: actions/upload-artifact@v4
               with:
-                  path: dist/rrteam_basicsort-0.0.1.tar.gz
+                  path: dist/*
