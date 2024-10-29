@@ -5,7 +5,7 @@ on:
     push:
 
 jobs:
-    linux:
+    build:
         runs-on: ubuntu-latest
         strategy:
             matrix:
@@ -20,7 +20,6 @@ jobs:
             - name: Install dependencies
               run: |
                   pip install --upgrade pip
-                  pip install -r requirements.txt
                   pip install -r requirements-dev.txt
             - name: Lint with black and flake8
               run: |
@@ -29,3 +28,10 @@ jobs:
             - name: Test with pytest
               run: |
                   pytest
+            - name: Create package
+              run: |
+                  py -m build
+            - name: Archive built package
+              uses: actions/upload-artifact@v4
+              with:
+                  path: dist/rrteam_basicsort-0.0.1.tar.gz
