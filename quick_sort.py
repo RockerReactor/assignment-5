@@ -7,7 +7,6 @@ def quick_sort(arr):
     Returns:
         list of int: The sorted list of integers.
     """
-    n = len(arr)
     if len(arr) <= 1:
         return arr
     else:

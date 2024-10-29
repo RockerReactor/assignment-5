@@ -19,9 +19,9 @@
 import pytest
 import numpy as np
 
-from bubble_sort import *
-from insertion_sort import *
-from quick_sort import *
+from bubble_sort import bubble_sort
+from insertion_sort import insertion_sort
+from quick_sort import quick_sort
 
 
 def is_sorted(int_list):
