@@ -34,5 +34,5 @@ jobs:
             - name: Archive built package
               uses: actions/upload-artifact@v4
               with:
-                  name: ${{ matrix.python-version }}
-                  path: dist/*
+                  name: rrteam_basicsort-0.0.1-py${{ matrix.python-version }}.tar.gz
+                  path: dist/rrteam_basicsort-0.0.1.tar.gz
